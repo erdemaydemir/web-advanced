@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.util.ServletRequestPathUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class ErrorResponseEntity {
 
-    public static <T> ResponseEntity<ErrorResponseBody<T>> notValid(String failedMessage, String exception, List<String> validations) {
+    public static <T> ResponseEntity<Object> notValid(String failedMessage, String exception, List<String> validations) {
         ErrorResponseBody<T> errorResponseBody = ErrorResponseBody.<T>builder()
                 .failedMessage(failedMessage)
                 .requestPath(getRequestPath())
@@ -26,7 +27,7 @@ public class ErrorResponseEntity {
     }
 
 
-    public static <T> ResponseEntity<ErrorResponseBody<T>> internalError(T body, String failedMessage, String exception) {
+    public static <T> ResponseEntity<Object> internalError(T body, String failedMessage, String exception) {
         ErrorResponseBody<T> errorResponseBody = ErrorResponseBody.<T>builder()
                 .content(body)
                 .failedMessage(failedMessage)
@@ -37,7 +38,7 @@ public class ErrorResponseEntity {
                 .body(errorResponseBody);
     }
 
-    public static <T> ResponseEntity<ErrorResponseBody<T>> withoutBody(HttpStatus status, HttpHeaders headers, String failedMessage, String exception, List<String> validations) {
+    public static <T> ResponseEntity<Object> withoutBody(HttpStatus status, HttpHeaders headers, String failedMessage, String exception, List<String> validations) {
         ErrorResponseBody<T> errorResponseBody = ErrorResponseBody.<T>builder()
                 .failedMessage(failedMessage)
                 .requestPath(getRequestPath())
@@ -49,8 +50,8 @@ public class ErrorResponseEntity {
                 .body(errorResponseBody);
     }
 
-    public static <T> ResponseEntity<ErrorResponseBody<T>> withBody(HttpStatus status, HttpHeaders headers, T body,
-                                                                    String failedMessage, String exception, List<String> validations) {
+    public static <T> ResponseEntity<Object> withBody(HttpStatus status, HttpHeaders headers, T body,
+                                                      String failedMessage, String exception, List<String> validations) {
         ErrorResponseBody<T> errorResponseBody = ErrorResponseBody.<T>builder()
                 .content(body)
                 .failedMessage(failedMessage)
@@ -65,7 +66,7 @@ public class ErrorResponseEntity {
 
     private static String getRequestPath() {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
-        return request.getAttribute(RequestDispatcher.FORWARD_REQUEST_URI).toString();
+        return request.getAttribute(ServletRequestPathUtils.PATH_ATTRIBUTE).toString();
     }
 
 }

@@ -1,3 +1,10 @@
 spring:
   application:
     name: web-test-application
+web-advanced:
+  security:
+    enabled: false
+    provider: AUTH0
+    auth0:
+      api-audience: http://{IDENTITY}
+      issuer: https://{TENANT_ID}.auth0.com/

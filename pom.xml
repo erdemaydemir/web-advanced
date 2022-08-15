@@ -12,7 +12,7 @@
 
     <groupId>com.forguta</groupId>
     <artifactId>web-advanced-parent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>pom</packaging>
 
     <name>web-advanced-parent</name>
@@ -23,7 +23,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>11</java.version>
         <jacoco.version>0.8.8</jacoco.version>
-        <springdoc.openapi.version>1.6.9</springdoc.openapi.version>
+        <springdoc-openapi.version>1.6.9</springdoc-openapi.version>
+        <keycloak-adapter-bom.version>19.0.1</keycloak-adapter-bom.version>
+        <auth0-spring-security-api.version>1.5.1</auth0-spring-security-api.version>
     </properties>
 
     <modules>
@@ -41,6 +43,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
@@ -66,9 +78,13 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>${springdoc.openapi.version}</version>
+            <version>${springdoc-openapi.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -90,4 +106,16 @@
             <url>https://maven.pkg.github.com/forguta/web-advanced</url>
         </repository>
     </distributionManagement>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.keycloak.bom</groupId>
+                <artifactId>keycloak-adapter-bom</artifactId>
+                <version>${keycloak-adapter-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
