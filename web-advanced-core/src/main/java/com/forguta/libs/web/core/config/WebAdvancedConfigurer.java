@@ -15,7 +15,7 @@ public class WebAdvancedConfigurer implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins(CorsConfiguration.ALL)
+                .allowedOriginPatterns(CorsConfiguration.ALL)
                 .allowedMethods(CorsConfiguration.ALL)
                 .allowedHeaders(CorsConfiguration.ALL)
                 .exposedHeaders("Location")
