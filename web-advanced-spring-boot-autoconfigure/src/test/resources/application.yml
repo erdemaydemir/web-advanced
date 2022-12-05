@@ -9,6 +9,6 @@ web-advanced:
       api-audience: http://notifyium
       issuer: https://dev-o6858vsg.us.auth0.com/
       sso-enable: true
-      client-id: 'lO1GYT9tZ5GrHZEZK53wHiWqVd4TdVMe'
-      client-secret: '9Vc2-onS0svh_SSbs4vdkIY7PDF6m6ypxBBZS_qVvkYDKKOW6bBirfp_AlAkWY-b'
-      connection-name: 'Username-Password-Authentication'
+      client-id: 'x'
+      client-secret: 'Y'
+      connection-name: 'Z'
