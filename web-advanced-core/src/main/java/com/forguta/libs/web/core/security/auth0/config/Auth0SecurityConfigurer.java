@@ -1,9 +1,7 @@
 package com.forguta.libs.web.core.security.auth0.config;
 
 import com.forguta.libs.web.core.security.auth0.config.properties.Auth0Properties;
-import com.forguta.libs.web.core.security.auth0.controller.Auth0Controller;
 import com.forguta.libs.web.core.security.auth0.proxy.Auth0AuthenticationAPIProxy;
-import com.forguta.libs.web.core.security.auth0.service.Auth0Service;
 import com.forguta.libs.web.core.security.config.AbstractEndpointSecurityAware;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
