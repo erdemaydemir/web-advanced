@@ -1,9 +1,13 @@
-package com.forguta.libs.web.core.security.config.auth0;
+package com.forguta.libs.web.core.security.auth0.config;
 
+import com.forguta.libs.web.core.security.auth0.config.properties.Auth0Properties;
+import com.forguta.libs.web.core.security.auth0.controller.Auth0Controller;
+import com.forguta.libs.web.core.security.auth0.proxy.Auth0AuthenticationAPIProxy;
+import com.forguta.libs.web.core.security.auth0.service.Auth0Service;
 import com.forguta.libs.web.core.security.config.AbstractEndpointSecurityAware;
-import com.forguta.libs.web.core.security.config.auth0.properties.Auth0Properties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,6 +21,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 @Configuration
 @ConditionalOnExpression("${web-advanced.security.enabled:true} and '${web-advanced.security.provider}'.equals('AUTH0')")
+@EnableFeignClients(clients = Auth0AuthenticationAPIProxy.class)
 public class Auth0SecurityConfigurer {
 
     private final Auth0Properties auth0Properties;
@@ -32,7 +37,7 @@ public class Auth0SecurityConfigurer {
 
     @Bean
     JwtDecoder jwtDecoder() {
-        NimbusJwtDecoder jwtDecoder = (NimbusJwtDecoder) JwtDecoders.fromOidcIssuerLocation(auth0Properties.getIssuer());
+        NimbusJwtDecoder jwtDecoder = JwtDecoders.fromOidcIssuerLocation(auth0Properties.getIssuer());
         OAuth2TokenValidator<Jwt> audienceValidator = new AudienceValidator(auth0Properties.getApiAudience());
         OAuth2TokenValidator<Jwt> withIssuer = JwtValidators.createDefaultWithIssuer(auth0Properties.getIssuer());
         OAuth2TokenValidator<Jwt> withAudience = new DelegatingOAuth2TokenValidator<>(withIssuer, audienceValidator);

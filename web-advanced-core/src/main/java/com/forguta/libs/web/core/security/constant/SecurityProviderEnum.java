@@ -1,4 +1,4 @@
-package com.forguta.libs.web.core.security.eum;
+package com.forguta.libs.web.core.security.constant;
 
 public enum SecurityProviderEnum {
     KEYCLOAK, AUTH0;

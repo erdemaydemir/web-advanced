@@ -5,6 +5,8 @@ import com.forguta.libs.web.core.model.response.body.GenericResponseBody;
 import com.forguta.libs.web.core.security.config.AbstractEndpointSecurityAware;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.stereotype.Component;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
+@ComponentScan("com.forguta.libs.web.core")
 public class SpringBootWebTestApplication {
 
     public static void main(String[] args) {
@@ -40,7 +43,7 @@ public class SpringBootWebTestApplication {
         @Override
         public void defineEndpoints(HttpSecurity httpSecurity) throws Exception {
             httpSecurity.authorizeHttpRequests()
-                    .mvcMatchers("/api/**").authenticated()
+                    .mvcMatchers("/api/**").permitAll()
                     .anyRequest().permitAll().and();
         }
 

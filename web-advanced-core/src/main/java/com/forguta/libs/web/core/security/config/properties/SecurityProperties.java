@@ -1,6 +1,6 @@
 package com.forguta.libs.web.core.security.config.properties;
 
-import com.forguta.libs.web.core.security.eum.SecurityProviderEnum;
+import com.forguta.libs.web.core.security.constant.SecurityProviderEnum;
 import com.forguta.libs.web.core.security.exception.SecurityConfigurationException;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

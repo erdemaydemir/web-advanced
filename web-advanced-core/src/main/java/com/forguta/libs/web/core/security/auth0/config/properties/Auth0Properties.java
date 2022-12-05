@@ -1,4 +1,4 @@
-package com.forguta.libs.web.core.security.config.auth0.properties;
+package com.forguta.libs.web.core.security.auth0.config.properties;
 
 import com.forguta.libs.web.core.security.exception.SecurityConfigurationException;
 import lombok.Data;
@@ -17,8 +17,12 @@ import javax.annotation.PostConstruct;
 @ConditionalOnExpression("${web-advanced.security.enabled:true} and '${web-advanced.security.provider}'.equals('AUTH0')")
 public class Auth0Properties {
 
+    private boolean ssoEnable;
     private String apiAudience;
     private String issuer;
+    private String clientId;
+    private String clientSecret;
+    private String connectionName;
 
     @PostConstruct
     public void validate() {
@@ -32,6 +36,21 @@ public class Auth0Properties {
         if (StringUtils.isEmpty(issuer)) {
             log.error("Auth0Config Validation failure. issuer cannot be empty or null.");
             valid = false;
+        }
+
+        if (ssoEnable) {
+            if (StringUtils.isEmpty(clientId)) {
+                log.error("Auth0Config Validation failure. clientId cannot be empty or null.");
+                valid = false;
+            }
+            if (StringUtils.isEmpty(clientSecret)) {
+                log.error("Auth0Config Validation failure. clientSecret cannot be empty or null.");
+                valid = false;
+            }
+            if (StringUtils.isEmpty(connectionName)) {
+                log.error("Auth0Config Validation failure. connectionName cannot be empty or null.");
+                valid = false;
+            }
         }
 
         if (valid) {

@@ -1,4 +1,4 @@
-package com.forguta.libs.web.core.security.config.keycloak;
+package com.forguta.libs.web.core.security.keycloak.config;
 
 import com.forguta.libs.web.core.security.config.AbstractEndpointSecurityAware;
 import lombok.RequiredArgsConstructor;
