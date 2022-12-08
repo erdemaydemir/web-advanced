@@ -3,17 +3,17 @@ spring:
     name: web-test-application
 web-advanced:
   security:
-    enabled: true
+    enabled: false
     provider: AUTH0
     auth0:
-      issuer: https://primefive.uk.auth0.com/
-      connection-name: 'Notifyium'
+      issuer: 'z'
+      connection-name: 'p'
       sso-enable: true
       authenticationAPI:
-        api-audience: https://notifyium.com/auth
-        client-id: 'MiOFGeojesYcqkHFYleOAL9IefFL6deX'
-        client-secret: 'x98ihDiUu7BloGtU-j2G0XLQyKUPZ2Eplv6wJXjzPHrpiIVQQnF4sYJIwLH9T_pc'
+        api-audience: 'x'
+        client-id: 'y'
+        client-secret: 'z'
       managementAPI:
-        api-audience: https://primefive.uk.auth0.com/api/v2/
-        client-id: 'pRndqW6r24dqiBoglBWqwqhzntO94Fun'
-        client-secret: '5PhxiuNjaITHMqXN7LirSOkHdItnnsskyJ2beyJw4PC0AyvlvCKPYPTLSbZBKM6J'
+        api-audience: 'x'
+        client-id: 'y'
+        client-secret: 'z'

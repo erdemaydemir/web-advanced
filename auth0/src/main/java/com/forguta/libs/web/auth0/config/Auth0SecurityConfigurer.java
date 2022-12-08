@@ -21,6 +21,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @ComponentScan(basePackages = "com.forguta.libs.web.auth0")
 @EnableFeignClients(clients = Auth0AuthenticationAPIProxy.class)
+@ConditionalOnExpression("${web-advanced.security.enabled:true} and '${web-advanced.security.provider}'.equals('AUTH0')")
 public class Auth0SecurityConfigurer {
 
     private final Auth0Properties auth0Properties;
