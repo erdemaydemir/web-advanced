@@ -6,7 +6,7 @@
     <groupId>com.forguta</groupId>
     <artifactId>common</artifactId>
     <version>1.0.8</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>common</name>
     <description>A generic library for common on spring boot web</description>
