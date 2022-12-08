@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.forguta</groupId>
-    <artifactId>web-advanced-spring-boot-starter</artifactId>
-    <version>1.0.5</version>
+    <artifactId>auth0</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>web-advanced-spring-boot-starter</name>
+    <name>auth0</name>
     <description>A generic library for common on spring boot web</description>
 
     <parent>
@@ -21,13 +21,20 @@
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <common.version>1.0.0</common.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.forguta</groupId>
-            <artifactId>web-advanced-spring-boot-autoconfigure</artifactId>
-            <version>${project.parent.version}</version>
+            <artifactId>common</artifactId>
+            <version>${common.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
     </dependencies>
+
 </project>

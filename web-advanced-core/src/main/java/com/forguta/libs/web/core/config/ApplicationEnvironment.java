@@ -1,6 +1,6 @@
 package com.forguta.libs.web.core.config;
 
-import com.forguta.libs.web.core.model.constant.Constant;
+import com.forguta.libs.web.core.constant.Constant;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;

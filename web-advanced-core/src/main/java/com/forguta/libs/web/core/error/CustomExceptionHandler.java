@@ -16,6 +16,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -59,6 +61,16 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         return buildResponseEntity(BAD_REQUEST, ex);
+    }
+
+    @ExceptionHandler(HttpServerErrorException.class)
+    protected ResponseEntity<Object> handleAllExceptions(HttpServerErrorException ex, WebRequest request) {
+        return buildResponseEntity(ex.getStatusCode(), ex);
+    }
+
+    @ExceptionHandler(HttpClientErrorException.class)
+    protected ResponseEntity<Object> handleAllExceptions(HttpClientErrorException ex, WebRequest request) {
+        return buildResponseEntity(ex.getStatusCode(), ex);
     }
 
     @ExceptionHandler(Exception.class)

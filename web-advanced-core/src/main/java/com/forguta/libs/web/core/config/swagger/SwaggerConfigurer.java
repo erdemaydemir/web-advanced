@@ -1,7 +1,7 @@
 package com.forguta.libs.web.core.config.swagger;
 
 import com.forguta.libs.web.core.config.ApplicationEnvironment;
-import com.forguta.libs.web.core.model.constant.Constant;
+import com.forguta.libs.web.core.constant.Constant;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;

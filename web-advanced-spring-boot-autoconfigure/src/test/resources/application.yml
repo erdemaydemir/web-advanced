@@ -6,9 +6,14 @@ web-advanced:
     enabled: true
     provider: AUTH0
     auth0:
-      api-audience: http://notifyium
-      issuer: https://dev-o6858vsg.us.auth0.com/
+      issuer: https://primefive.uk.auth0.com/
+      connection-name: 'Notifyium'
       sso-enable: true
-      client-id: 'x'
-      client-secret: 'Y'
-      connection-name: 'Z'
+      authenticationAPI:
+        api-audience: https://notifyium.com/auth
+        client-id: 'MiOFGeojesYcqkHFYleOAL9IefFL6deX'
+        client-secret: 'x98ihDiUu7BloGtU-j2G0XLQyKUPZ2Eplv6wJXjzPHrpiIVQQnF4sYJIwLH9T_pc'
+      managementAPI:
+        api-audience: https://primefive.uk.auth0.com/api/v2/
+        client-id: 'pRndqW6r24dqiBoglBWqwqhzntO94Fun'
+        client-secret: '5PhxiuNjaITHMqXN7LirSOkHdItnnsskyJ2beyJw4PC0AyvlvCKPYPTLSbZBKM6J'

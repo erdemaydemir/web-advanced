@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.forguta</groupId>
-    <artifactId>web-advanced-spring-boot-starter</artifactId>
-    <version>1.0.5</version>
+    <artifactId>keycloak</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>web-advanced-spring-boot-starter</name>
+    <name>auth0</name>
     <description>A generic library for common on spring boot web</description>
 
     <parent>
@@ -21,13 +21,25 @@
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <keycloak-adapter-bom.version>19.0.1</keycloak-adapter-bom.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.forguta</groupId>
-            <artifactId>web-advanced-spring-boot-autoconfigure</artifactId>
-            <version>${project.parent.version}</version>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.keycloak.bom</groupId>
+                <artifactId>keycloak-adapter-bom</artifactId>
+                <version>${keycloak-adapter-bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

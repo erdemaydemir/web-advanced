@@ -1,7 +1,7 @@
 package com.forguta.libs.web.core.security.config.properties;
 
 import com.forguta.libs.web.core.security.constant.SecurityProviderEnum;
-import com.forguta.libs.web.core.security.exception.SecurityConfigurationException;
+import com.forguta.libs.web.common.exception.SecurityConfigurationException;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
