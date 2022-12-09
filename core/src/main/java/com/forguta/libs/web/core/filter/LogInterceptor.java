@@ -45,6 +45,6 @@ public class LogInterceptor implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         String requestId = response.getHeader(LogConstant.REQUEST_ID);
         MDC.remove(CORRELATION_ID);
-        log.info("TYPE={}, PHASE={}, REQUEST_URI={}, REQUEST_ID={}, FAIL_MESSAGE={}", LogSummonerEnum.REQUEST, LogSummonerPhaseEnum.POST_HANDLE, request.getRequestURI(), requestId, ex.getMessage());
+        log.info("TYPE={}, PHASE={}, REQUEST_URI={}, REQUEST_ID={}, FAIL_MESSAGE={}", LogSummonerEnum.REQUEST, LogSummonerPhaseEnum.POST_HANDLE, request.getRequestURI(), requestId, ex != null ? ex.getMessage() : null);
     }
 }
