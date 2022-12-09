@@ -21,12 +21,12 @@
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <web.commons.version>1.1.1</web.commons.version>
+        <web.commons.version>1.1.2</web.commons.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.forguta.web</groupId>
+            <groupId>com.github.forguta.libs.web</groupId>
             <artifactId>commons</artifactId>
             <version>${web.commons.version}</version>
         </dependency>
