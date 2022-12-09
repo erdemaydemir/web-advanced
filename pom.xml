@@ -12,7 +12,7 @@
 
     <groupId>com.forguta</groupId>
     <artifactId>web-advanced-parent</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <packaging>pom</packaging>
 
     <name>web-advanced-parent</name>
@@ -25,6 +25,7 @@
         <jacoco.version>0.8.8</jacoco.version>
         <springdoc-openapi.version>1.6.13</springdoc-openapi.version>
         <auth0-spring-security-api.version>1.5.1</auth0-spring-security-api.version>
+        <spring-cloud-dependencies.version>2021.0.3</spring-cloud-dependencies.version>
     </properties>
 
     <modules>
@@ -49,7 +50,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2021.0.3</version>
+                <version>${spring-cloud-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

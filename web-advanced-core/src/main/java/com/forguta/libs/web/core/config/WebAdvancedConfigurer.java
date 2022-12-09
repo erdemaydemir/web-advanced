@@ -2,8 +2,6 @@ package com.forguta.libs.web.core.config;
 
 import com.forguta.libs.web.core.filter.LogInterceptor;
 import lombok.RequiredArgsConstructor;
-import org.dozer.DozerBeanMapper;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -33,9 +31,4 @@ public class WebAdvancedConfigurer implements WebMvcConfigurer {
         registry.addInterceptor(logInterceptor);
     }
 
-
-    @Bean
-    public DozerBeanMapper dozerBeanMapper() {
-        return new DozerBeanMapper();
-    }
 }

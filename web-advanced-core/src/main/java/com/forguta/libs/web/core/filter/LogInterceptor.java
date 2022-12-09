@@ -1,8 +1,9 @@
 package com.forguta.libs.web.core.filter;
 
-import com.forguta.libs.web.core.constant.HttpPhaseEnum;
+import com.forguta.commons.constant.LogSummonerEnum;
+import com.forguta.commons.constant.LogSummonerPhaseEnum;
+import com.forguta.commons.util.MDCContext;
 import com.forguta.libs.web.core.constant.LogConstant;
-import com.forguta.libs.web.core.util.MDCContext;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
@@ -27,25 +28,23 @@ public class LogInterceptor implements HandlerInterceptor {
         if (StringUtils.isEmpty(correlationId)) {
             correlationId = UUID.randomUUID().toString();
         }
-        MDCContext.put(correlationId);
+        MDCContext.putCorrelationId(correlationId);
         response.addHeader(CORRELATION_ID, correlationId);
         response.addHeader(LogConstant.REQUEST_ID, requestId);
-        log.info("[{}] REQUEST [{}] -> id = {}, correlation-id = {}, phase = {}", request.getMethod(), request.getRequestURI(), requestId, correlationId, HttpPhaseEnum.PRE_HANDLE);
+        log.info("TYPE={}, PHASE={}, REQUEST_URI={}, REQUEST_ID={}", LogSummonerEnum.REQUEST, LogSummonerPhaseEnum.PRE_HANDLE, request.getRequestURI(), requestId);
         return true;
     }
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        String correlationId = response.getHeader(CORRELATION_ID);
         String requestId = response.getHeader(LogConstant.REQUEST_ID);
-        log.info("[{}] REQUEST [{}] -> id = {}, correlation-id = {}, phase = {}", request.getMethod(), request.getRequestURI(), requestId, correlationId, HttpPhaseEnum.POST_HANDLE);
+        log.info("TYPE={}, PHASE={}, REQUEST_URI={}, REQUEST_ID={}", LogSummonerEnum.REQUEST, LogSummonerPhaseEnum.POST_HANDLE, request.getRequestURI(), requestId);
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        String correlationId = response.getHeader(CORRELATION_ID);
         String requestId = response.getHeader(LogConstant.REQUEST_ID);
         MDC.remove(CORRELATION_ID);
-        log.info("[{}] REQUEST [{}] -> id = {}, correlation-id = {}, phase = {}, exception = {}", request.getMethod(), request.getRequestURI(), requestId, correlationId, HttpPhaseEnum.AFTER_COMPLETION, ex);
+        log.info("TYPE={}, PHASE={}, REQUEST_URI={}, REQUEST_ID={}, FAIL_MESSAGE={}", LogSummonerEnum.REQUEST, LogSummonerPhaseEnum.POST_HANDLE, request.getRequestURI(), requestId, ex.getMessage());
     }
 }

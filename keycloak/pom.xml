@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.forguta</groupId>
+    <groupId>com.forguta.web</groupId>
     <artifactId>keycloak</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <packaging>jar</packaging>
 
     <name>keycloak</name>
@@ -14,7 +14,7 @@
     <parent>
         <groupId>com.forguta</groupId>
         <artifactId>web-advanced-parent</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.1</version>
     </parent>
 
     <properties>

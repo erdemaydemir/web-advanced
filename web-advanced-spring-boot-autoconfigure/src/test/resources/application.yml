@@ -17,3 +17,8 @@ web-advanced:
         api-audience: 'x'
         client-id: 'y'
         client-secret: 'z'
+
+logging:
+  pattern:
+    file: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){green} %clr([%level]){magenta} %clr[%.7thread] %clr(<%X{correlation-id}>)  %clr(%-40.40logger{39}){cyan} %clr(:) %m%n'
+    console: '%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){green} %clr([%level]){magenta} %clr[%.7thread] %clr(<%X{correlation-id}>)  %clr(%-40.40logger{39}){cyan} %clr(:) %m%n'

@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.forguta</groupId>
-    <artifactId>common</artifactId>
-    <version>1.1.0</version>
+    <groupId>com.forguta.web</groupId>
+    <artifactId>commons</artifactId>
+    <version>1.1.1</version>
     <packaging>jar</packaging>
 
     <name>common</name>
@@ -14,7 +14,7 @@
     <parent>
         <groupId>com.forguta</groupId>
         <artifactId>web-advanced-parent</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.1</version>
     </parent>
 
     <properties>
@@ -22,6 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <dozer.version>5.5.1</dozer.version>
+        <common.version>1.0.2</common.version>
     </properties>
 
     <dependencies>
@@ -36,24 +37,14 @@
         </dependency>
 
         <dependency>
-            <groupId>net.sf.dozer</groupId>
-            <artifactId>dozer</artifactId>
-            <version>${dozer.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>com.forguta</groupId>
+            <artifactId>commons</artifactId>
+            <version>${common.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-commons</artifactId>
         </dependency>
     </dependencies>
 </project>

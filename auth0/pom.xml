@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.forguta</groupId>
+    <groupId>com.forguta.web</groupId>
     <artifactId>auth0</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <packaging>jar</packaging>
 
     <name>auth0</name>
@@ -14,21 +14,21 @@
     <parent>
         <groupId>com.forguta</groupId>
         <artifactId>web-advanced-parent</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.1</version>
     </parent>
 
     <properties>
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <common.version>1.1.0</common.version>
+        <web.commons.version>1.1.1</web.commons.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.forguta</groupId>
-            <artifactId>common</artifactId>
-            <version>${common.version}</version>
+            <groupId>com.forguta.web</groupId>
+            <artifactId>commons</artifactId>
+            <version>${web.commons.version}</version>
         </dependency>
 
         <dependency>
