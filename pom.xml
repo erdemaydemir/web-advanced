@@ -10,9 +10,9 @@
         <version>2.7.1</version>
     </parent>
 
-    <groupId>com.github.forguta.libs.web</groupId>
-    <artifactId>web-advanced-parent</artifactId>
-    <version>1.1.5</version>
+    <groupId>com.github.forguta.web-advanced</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.1.6</version>
     <packaging>pom</packaging>
 
     <name>web-advanced-parent</name>
@@ -29,7 +29,7 @@
     </properties>
 
     <modules>
-        <module>common</module>
+        <module>commons</module>
         <module>auth0</module>
         <module>keycloak</module>
         <module>web-advanced-core</module>

@@ -3,18 +3,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.forguta.libs.web</groupId>
+    <groupId>com.github.forguta.web-advanced</groupId>
     <artifactId>web-advanced-spring-boot-starter</artifactId>
-    <version>1.1.5</version>
+    <version>1.1.6</version>
     <packaging>jar</packaging>
 
     <name>web-advanced-spring-boot-starter</name>
     <description>A generic library for common on spring boot web</description>
 
     <parent>
-        <groupId>com.github.forguta.libs.web</groupId>
-        <artifactId>web-advanced-parent</artifactId>
-        <version>1.1.5</version>
+        <groupId>com.github.forguta.web-advanced</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.1.6</version>
     </parent>
 
     <properties>
@@ -25,8 +25,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.forguta.libs.web</groupId>
-            <artifactId>web-advanced-spring-boot-autoconfigure</artifactId>
+            <groupId>com.github.forguta.web-advanced</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
     </dependencies>

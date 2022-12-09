@@ -3,30 +3,30 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.forguta.web</groupId>
+    <groupId>com.github.forguta.web-advanced</groupId>
     <artifactId>auth0</artifactId>
-    <version>1.1.5</version>
+    <version>1.1.6</version>
     <packaging>jar</packaging>
 
     <name>auth0</name>
     <description>A generic library for common on spring boot web</description>
 
     <parent>
-        <groupId>com.github.forguta.libs.web</groupId>
-        <artifactId>web-advanced-parent</artifactId>
-        <version>1.1.5</version>
+        <groupId>com.github.forguta.web-advanced</groupId>
+        <artifactId>parent</artifactId>
+        <version>1.1.6</version>
     </parent>
 
     <properties>
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <web.commons.version>1.1.5</web.commons.version>
+        <web.commons.version>1.1.6</web.commons.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.github.forguta.libs.web</groupId>
+            <groupId>com.github.forguta.web-advanced</groupId>
             <artifactId>commons</artifactId>
             <version>${web.commons.version}</version>
         </dependency>
