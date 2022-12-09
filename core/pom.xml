@@ -5,16 +5,16 @@
 
     <groupId>com.github.forguta.web-advanced</groupId>
     <artifactId>core</artifactId>
-    <version>1.1.6</version>
+    <version>1.1.7</version>
     <packaging>jar</packaging>
 
-    <name>web-advanced-core</name>
+    <name>core</name>
     <description>A generic library for common on spring boot web</description>
 
     <parent>
         <groupId>com.github.forguta.web-advanced</groupId>
         <artifactId>parent</artifactId>
-        <version>1.1.6</version>
+        <version>1.1.7</version>
     </parent>
 
     <properties>

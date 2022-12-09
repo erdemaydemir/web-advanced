@@ -12,10 +12,10 @@
 
     <groupId>com.github.forguta.web-advanced</groupId>
     <artifactId>parent</artifactId>
-    <version>1.1.6</version>
+    <version>1.1.7</version>
     <packaging>pom</packaging>
 
-    <name>web-advanced-parent</name>
+    <name>parent</name>
     <description>A generic library for common on spring boot web</description>
 
     <properties>
@@ -32,9 +32,9 @@
         <module>commons</module>
         <module>auth0</module>
         <module>keycloak</module>
-        <module>web-advanced-core</module>
-        <module>web-advanced-spring-boot-autoconfigure</module>
-        <module>web-advanced-spring-boot-starter</module>
+        <module>core</module>
+        <module>spring-boot-autoconfigure</module>
+        <module>spring-boot-starter</module>
     </modules>
 
     <repositories>
