@@ -5,7 +5,7 @@
 
     <groupId>com.github.forguta.web-advanced</groupId>
     <artifactId>commons</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
     <packaging>jar</packaging>
 
     <name>commons</name>
@@ -14,7 +14,7 @@
     <parent>
         <groupId>com.github.forguta.web-advanced</groupId>
         <artifactId>parent</artifactId>
-        <version>1.2.0</version>
+        <version>1.2.1</version>
     </parent>
 
     <properties>
@@ -22,7 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <dozer.version>5.5.1</dozer.version>
-        <commons.version>1.0.6</commons.version>
+        <commons.version>1.0.7</commons.version>
     </properties>
 
     <dependencies>

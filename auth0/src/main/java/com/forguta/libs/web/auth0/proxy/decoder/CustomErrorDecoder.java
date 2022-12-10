@@ -1,6 +1,6 @@
 package com.forguta.libs.web.auth0.proxy.decoder;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.forguta.commons.util.MyObjectMapper;
 import com.forguta.libs.web.auth0.proxy.model.response.Auth0ErrorResponse;
 import feign.Response;
 import feign.codec.ErrorDecoder;
@@ -21,8 +21,8 @@ import java.io.InputStream;
 @RequiredArgsConstructor
 public class CustomErrorDecoder implements ErrorDecoder {
 
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     private static final ErrorDecoder errorDecoder = new Default();
+    private final MyObjectMapper objectMapper;
 
     @Override
     public Exception decode(String methodKey, Response response) {
@@ -41,7 +41,7 @@ public class CustomErrorDecoder implements ErrorDecoder {
     private Auth0ErrorResponse getAuth0ErrorResponse(Response response) {
         Auth0ErrorResponse auth0ErrorResponse;
         try (InputStream responseBodyArr = response.body().asInputStream()) {
-            auth0ErrorResponse = OBJECT_MAPPER.readValue(responseBodyArr, Auth0ErrorResponse.class);
+            auth0ErrorResponse = objectMapper.readValue(responseBodyArr, Auth0ErrorResponse.class);
             if (StringUtils.hasText(auth0ErrorResponse.getCode())) {
                 auth0ErrorResponse.setError(auth0ErrorResponse.getCode());
                 auth0ErrorResponse.setErrorDescription(auth0ErrorResponse.getMessage());

@@ -15,6 +15,8 @@ import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
 import org.springframework.security.oauth2.core.OAuth2TokenValidatorResult;
 import org.springframework.security.oauth2.jwt.*;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
 
 @RequiredArgsConstructor
@@ -24,6 +26,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @ConditionalOnExpression("${web-advanced.security.enabled:true} and '${web-advanced.security.provider}'.equals('AUTH0')")
 public class Auth0SecurityConfigurer {
 
+    private static final String PERMISSIONS_CLAIM_NAME = "permissions";
+
     private final Auth0Properties auth0Properties;
     private final AbstractEndpointSecurityAware abstractEndpointSecurityAware;
 
@@ -32,7 +36,7 @@ public class Auth0SecurityConfigurer {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable().cors();
         abstractEndpointSecurityAware.define(http);
-        http.oauth2ResourceServer().jwt();
+        http.oauth2ResourceServer().jwt().jwtAuthenticationConverter(jwtAuthenticationConverter());
         return http.build();
     }
 
@@ -44,6 +48,14 @@ public class Auth0SecurityConfigurer {
         OAuth2TokenValidator<Jwt> withAudience = new DelegatingOAuth2TokenValidator<>(withIssuer, audienceValidator);
         jwtDecoder.setJwtValidator(withAudience);
         return jwtDecoder;
+    }
+
+    private JwtAuthenticationConverter jwtAuthenticationConverter() {
+        JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
+        jwtGrantedAuthoritiesConverter.setAuthoritiesClaimName(PERMISSIONS_CLAIM_NAME);
+        JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);
+        return jwtAuthenticationConverter;
     }
 
     static class AudienceValidator implements OAuth2TokenValidator<Jwt> {

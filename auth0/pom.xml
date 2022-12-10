@@ -5,7 +5,7 @@
 
     <groupId>com.github.forguta.web-advanced</groupId>
     <artifactId>auth0</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
     <packaging>jar</packaging>
 
     <name>auth0</name>
@@ -14,14 +14,14 @@
     <parent>
         <groupId>com.github.forguta.web-advanced</groupId>
         <artifactId>parent</artifactId>
-        <version>1.2.0</version>
+        <version>1.2.1</version>
     </parent>
 
     <properties>
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <web.commons.version>1.1.6</web.commons.version>
+        <web.commons.version>1.2.1</web.commons.version>
     </properties>
 
     <dependencies>
