@@ -7,20 +7,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.List;
 import java.util.Map;
 
+@Lazy
 @Component
-@Scope(scopeName = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
+@RequestScope
 @RequiredArgsConstructor
 public class Auth0AuthSessionInformationSupplier implements AuthSessionInformationSupplier {
 
@@ -31,6 +34,7 @@ public class Auth0AuthSessionInformationSupplier implements AuthSessionInformati
 
     @PostConstruct
     public void init() {
+        System.out.println("loaded.");
         userInfo = getInfo();
     }
 
