@@ -1,7 +1,6 @@
 package com.forguta.libs.web.auth0.config;
 
 import com.forguta.libs.web.auth0.config.properties.Auth0Properties;
-import com.forguta.libs.web.auth0.proxy.Auth0AuthenticationAPIProxy;
 import com.forguta.libs.web.common.AbstractEndpointSecurityAware;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
@@ -22,7 +21,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 @Configuration
 @ComponentScan(basePackages = "com.forguta.libs.web.auth0")
-@EnableFeignClients(clients = Auth0AuthenticationAPIProxy.class)
+@EnableFeignClients(basePackages = "com.forguta.libs.web.auth0")
 @ConditionalOnExpression("${web-advanced.security.enabled:true} and '${web-advanced.security.provider}'.equals('AUTH0')")
 public class Auth0SecurityConfigurer {
 

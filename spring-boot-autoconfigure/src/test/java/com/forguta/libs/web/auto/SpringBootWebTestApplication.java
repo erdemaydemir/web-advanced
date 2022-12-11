@@ -5,22 +5,22 @@ import com.forguta.libs.web.auth0.model.request.SignupRequest;
 import com.forguta.libs.web.auth0.model.request.TokenRequest;
 import com.forguta.libs.web.auth0.model.response.SignupResponse;
 import com.forguta.libs.web.auth0.model.response.TokenResponse;
-import com.forguta.libs.web.auth0.service.Auth0AuthSessionInformationSupplier;
 import com.forguta.libs.web.auth0.service.Auth0AuthenticationAPIService;
 import com.forguta.libs.web.common.AbstractEndpointSecurityAware;
-import com.forguta.libs.web.common.AuthSessionInformationSupplier;
 import com.forguta.libs.web.core.model.response.GenericResponseEntity;
 import com.forguta.libs.web.core.model.response.body.GenericResponseBody;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @ComponentScan("com.forguta")
@@ -30,13 +30,13 @@ public class SpringBootWebTestApplication {
         SpringApplication.run(SpringBootWebTestApplication.class, args);
     }
 
-    @RestController
-    @RequestMapping("/api")
+    @Tag(name = "Authentication", description = "Authentication")
     @RequiredArgsConstructor
-    public class Controller {
+    @RestController
+    @RequestMapping("/api/auth")
+    public class AuthController {
 
         private final Auth0AuthenticationAPIService auth0AuthenticationAPIService;
-        private final AuthService authService;
 
         @PostMapping("/signup")
         public ResponseEntity<GenericResponseBody<SignupResponse>> signup(@RequestBody SignupRequest signupRequest) {
@@ -58,26 +58,10 @@ public class SpringBootWebTestApplication {
 
         @PostMapping("/logout")
         public ResponseEntity<GenericResponseBody<Object>> logout() {
-            authService.logout();
+            auth0AuthenticationAPIService.logout();
             return GenericResponseEntity.ok("");
         }
     }
-
-    @Service
-    @RequiredArgsConstructor
-    @Slf4j
-    public static class AuthService {
-
-        private final Auth0AuthenticationAPIService auth0AuthenticationAPIService;
-        private final AuthSessionInformationSupplier auth0AuthSessionInformationSupplier;
-
-        public void logout() {
-            log.info(auth0AuthSessionInformationSupplier.userId());
-            auth0AuthenticationAPIService.logout();
-        }
-
-    }
-
 
     @Component
     public static class EndpointSecurityAware extends AbstractEndpointSecurityAware {

@@ -1,6 +1,5 @@
-package com.forguta.libs.web.auth0.proxy.model.response;
+package com.forguta.libs.web.auth0.proxy.model.response.error;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +11,7 @@ import java.util.Map;
 @NoArgsConstructor
 @Data
 @Builder
-public class Auth0ErrorResponse {
+public class Auth0SignupErrorResponse {
 
     private String code;
     private String name;
@@ -20,7 +19,5 @@ public class Auth0ErrorResponse {
     private Map<String, ?> description;
     private String policy;
     private String statusCode;
-    private String error;
-    @JsonProperty("error_description")
-    private String errorDescription;
+    private String repeatable;
 }
