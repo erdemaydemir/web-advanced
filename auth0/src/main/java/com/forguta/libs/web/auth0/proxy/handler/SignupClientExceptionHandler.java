@@ -1,6 +1,7 @@
 package com.forguta.libs.web.auth0.proxy.handler;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.forguta.commons.util.MyObjectMapper;
 import com.forguta.libs.web.auth0.proxy.model.response.error.Auth0SignupErrorResponse;
 import com.forguta.libs.web.common.exception.InvalidSignupException;
@@ -10,6 +11,7 @@ import feign.Response;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -24,8 +26,9 @@ public class SignupClientExceptionHandler implements FeignHttpExceptionHandler {
     private final MyObjectMapper objectMapper;
 
     @Override
-    public Exception handle(Response response) {
-        Auth0SignupErrorResponse auth0SignupErrorResponse = objectMapper.convertValue(response.body(), Auth0SignupErrorResponse.class);
+    public Exception handle(Response response) throws IOException {
+        JsonNode jsonNode = objectMapper.readTree(response.body().asInputStream());
+        Auth0SignupErrorResponse auth0SignupErrorResponse = objectMapper.convertValue(jsonNode, Auth0SignupErrorResponse.class);
         if (INVALID_PASSWORD.equals(auth0SignupErrorResponse.getCode())) {
             List<Map<String, ?>> rules = objectMapper.convertValue(auth0SignupErrorResponse.getDescription().get("rules"), new TypeReference<>() {
             });
