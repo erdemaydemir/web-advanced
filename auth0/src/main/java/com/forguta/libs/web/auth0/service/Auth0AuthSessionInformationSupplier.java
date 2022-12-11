@@ -25,8 +25,8 @@ import java.util.Map;
 public class Auth0AuthSessionInformationSupplier implements AuthSessionInformationSupplier {
 
     private static final String APP_USER_KEY = "app_user";
+    private final static MyObjectMapper myObjectMapper = new MyObjectMapper();
 
-    private final MyObjectMapper objectMapper;
     private UserInfo userInfo;
 
     @PostConstruct
@@ -70,7 +70,7 @@ public class Auth0AuthSessionInformationSupplier implements AuthSessionInformati
             if (authentication instanceof JwtAuthenticationToken) {
                 JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) authentication;
                 Map<String, Object> claims = jwtAuthenticationToken.getToken().getClaims();
-                return objectMapper.convertValue(claims.get(APP_USER_KEY), UserInfo.class);
+                return myObjectMapper.convertValue(claims.get(APP_USER_KEY), UserInfo.class);
             }
         }
         return null;

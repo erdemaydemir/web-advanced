@@ -5,7 +5,7 @@
 
     <groupId>com.github.forguta.web-advanced</groupId>
     <artifactId>commons</artifactId>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
     <packaging>jar</packaging>
 
     <name>commons</name>
@@ -14,7 +14,7 @@
     <parent>
         <groupId>com.github.forguta.web-advanced</groupId>
         <artifactId>parent</artifactId>
-        <version>1.2.1</version>
+        <version>1.2.2</version>
     </parent>
 
     <properties>
