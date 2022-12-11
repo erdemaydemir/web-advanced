@@ -7,28 +7,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.RequestScope;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.List;
 import java.util.Map;
 
-@Lazy
-@Component
-@RequestScope
 @RequiredArgsConstructor
 public class Auth0AuthSessionInformationSupplier implements AuthSessionInformationSupplier {
 
     private static final String APP_USER_KEY = "app_user";
-    private final static MyObjectMapper myObjectMapper = new MyObjectMapper();
+    private final MyObjectMapper myObjectMapper;
 
     private UserInfo userInfo;
 
