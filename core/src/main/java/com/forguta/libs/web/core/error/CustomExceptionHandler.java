@@ -1,5 +1,9 @@
 package com.forguta.libs.web.core.error;
 
+import com.forguta.libs.web.common.exception.InvalidAccessTokenException;
+import com.forguta.libs.web.common.exception.InvalidSignupException;
+import com.forguta.libs.web.common.exception.NotFoundException;
+import com.forguta.libs.web.common.exception.UnknownErrorClientException;
 import com.forguta.libs.web.core.model.response.ErrorResponseEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
@@ -10,14 +14,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
+import org.springframework.util.ObjectUtils;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -63,14 +66,25 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponseEntity(BAD_REQUEST, ex);
     }
 
-    @ExceptionHandler(HttpServerErrorException.class)
-    protected ResponseEntity<Object> handleAllExceptions(HttpServerErrorException ex, WebRequest request) {
-        return buildResponseEntity(ex.getStatusCode(), ex);
+    @ExceptionHandler(InvalidSignupException.class)
+    protected ResponseEntity<Object> handleInvalidSignupException(InvalidSignupException ex, WebRequest request) {
+        List<String> validations = getValidations(ex);
+        return buildResponseEntity(BAD_REQUEST, ex, validations);
     }
 
-    @ExceptionHandler(HttpClientErrorException.class)
-    protected ResponseEntity<Object> handleAllExceptions(HttpClientErrorException ex, WebRequest request) {
-        return buildResponseEntity(ex.getStatusCode(), ex);
+    @ExceptionHandler(InvalidAccessTokenException.class)
+    protected ResponseEntity<Object> handleInvalidAccessTokenException(InvalidAccessTokenException ex, WebRequest request) {
+        return buildResponseEntity(FORBIDDEN, ex);
+    }
+
+    @ExceptionHandler(UnknownErrorClientException.class)
+    protected ResponseEntity<Object> handleUnknownErrorClientException(UnknownErrorClientException ex, WebRequest request) {
+        return buildResponseEntity(INTERNAL_SERVER_ERROR, ex);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    protected ResponseEntity<Object> handleNotFoundException(NotFoundException ex, WebRequest request) {
+        return buildResponseEntity(NOT_FOUND, ex);
     }
 
     @ExceptionHandler(Exception.class)
@@ -88,6 +102,10 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return ErrorResponseEntity.withoutBody(status, headers, exception.getMessage(), exception.getClass().getSimpleName(), validations);
+    }
+
+    private List<String> getValidations(InvalidSignupException ex) {
+        return !ObjectUtils.isEmpty(ex.getValidations()) ? ex.getValidations() : null;
     }
 
     private List<String> getValidations(MethodArgumentNotValidException ex) {

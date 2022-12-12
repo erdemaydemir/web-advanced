@@ -5,8 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Map;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -16,8 +14,8 @@ public class Auth0SignupErrorResponse {
     private String code;
     private String name;
     private String message;
-    private Map<String, ?> description;
+    private Object description;
     private String policy;
     private String statusCode;
-    private String repeatable;
+    private Object data;
 }

@@ -18,4 +18,8 @@ public class InvalidSignupException extends RuntimeException {
         super(message);
         this.validations = validations;
     }
+
+    public List<String> getValidations() {
+        return validations;
+    }
 }
